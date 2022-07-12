@@ -1,5 +1,7 @@
 const Vehicle=require('./vehicle-model');
 
+//delete operation endpoint
+
 exports.getAllVehicles=async(req,res)=>{
     Vehicles=await Vehicle.find();
     try{
@@ -17,6 +19,28 @@ exports.getAllVehicles=async(req,res)=>{
         console.log(err);
     }
 };
+
+
+exports.getVehicle=async(req,res)=>{
+    vehicle=await Vehicle.findById(req.params.id);
+    try{
+        res.status(200).json({
+        status:"success",
+        data:{
+        vehicle
+        }
+        });
+    }catch(err){
+        res.status(400).json({
+            status:"fail",
+            message:`error ${err}`
+        });
+        console.log(err);
+    }
+};
+
+//create operation endpoint
+
 
 exports.createVehicle=async (req,res)=>{
     console.log(req.body);
@@ -38,6 +62,8 @@ try{
 
 };
 
+//update operation endpoint
+
 exports.updateVehicle=async (req,res)=>{
     try{
         const updatedVehicle=await Vehicle.findByIdAndUpdate(req.params.id,req.body);
@@ -52,6 +78,24 @@ exports.updateVehicle=async (req,res)=>{
         });
     }
 }
+
+
+exports.updateVehicle=async (req,res)=>{
+    try{
+        const updatedVehicle=await Vehicle.findByIdAndUpdate(req.params.id,req.body);
+      res.status(200).json({
+        status:"vehicle Update Successfull",
+        data:updatedVehicle
+      })
+    }catch(err){
+        res.status(404).json({
+            status:"Update Failed",
+            message:`erro ${err}`
+        });
+    }
+}
+
+//delete operation endpoint
 
 exports.deleteVehicle=async(req,res)=>{
     try{

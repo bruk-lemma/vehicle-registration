@@ -23,7 +23,6 @@ const vehicleSchema=new mongoose.Schema({
         required:[true,"A vehicle must have an engine type"],
         trim:true
     }
-
 });
 const Vehicle=mongoose.model('Vehicle',vehicleSchema);
 module.exports=Vehicle;
