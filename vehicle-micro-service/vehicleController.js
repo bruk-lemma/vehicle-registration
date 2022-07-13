@@ -1,14 +1,16 @@
 const Vehicle=require('./vehicle-model');
+const axios = require('axios');
+
 
 //delete operation endpoint
 
-exports.getAllVehicles=async(req,res)=>{
-    Vehicles=await Vehicle.find();
+exports.getAllVehicles=async(req,res)=>{   
+     const Vehicles=await Vehicle.find();
     try{
         res.status(200).json({
         status:"success",
         data:{
-        Vehicles
+        Vehicles,
         }
         });
     }catch(err){
@@ -108,5 +110,14 @@ exports.deleteVehicle=async(req,res)=>{
             status:"Delete opaeration failed..!",
             message:`Error ${err}`
         });
+    }
+};
+
+exports.axi=async function getUser() {
+    try {
+      const response = await axios.get('127.0.0.1:7000/api/v1/driver');
+      console.log(response);
+    } catch (error) {
+      console.error(error);
     }
 };
