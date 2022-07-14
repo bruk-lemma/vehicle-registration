@@ -1,16 +1,21 @@
 const Vehicle=require('./vehicle-model');
 const axios = require('axios');
+const { response } = require('./app');
 
 
-//delete operation endpoint
+
+//getting data operation endpoint
 
 exports.getAllVehicles=async(req,res)=>{   
      const Vehicles=await Vehicle.find();
+     const {data}=await axios.get('http://127.0.0.1:7000/api/v1/driver');
+    
     try{
         res.status(200).json({
         status:"success",
         data:{
         Vehicles,
+        data
         }
         });
     }catch(err){
@@ -113,11 +118,3 @@ exports.deleteVehicle=async(req,res)=>{
     }
 };
 
-exports.axi=async function getUser() {
-    try {
-      const response = await axios.get('127.0.0.1:7000/api/v1/driver');
-      console.log(response);
-    } catch (error) {
-      console.error(error);
-    }
-};
