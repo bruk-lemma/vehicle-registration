@@ -2,20 +2,16 @@ const Customer=require('./customer-model');
 const axios = require('axios');
 const { response } = require('./app');
 
-
-
 //getting data operation endpoint
 
 exports.getAllCustomers=async(req,res)=>{   
      const Customers=await Customer.find();
     // const {data}=await axios.get('http://127.0.0.1:7000/api/v1/driver');
-    
     try{
         res.status(200).json({
         status:"success",
         data:{
         Customers,
-        
         }
         });
     }catch(err){

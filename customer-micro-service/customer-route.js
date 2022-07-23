@@ -11,4 +11,5 @@ router.route('/:id')
 .patch(customerController.updateCustomer)
 .delete(customerController.deleteCustomer)
 .put(customerController.updateCustomer);
+
 module.exports=router;
